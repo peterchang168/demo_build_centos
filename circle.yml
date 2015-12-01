@@ -12,3 +12,9 @@ dependencies:
 test:
   override:
     - docker run --privileged -it -v ${PWD}:/srv centos:latest /srv/build.sh
+
+deployment:
+  staging:
+    branch: master
+    commands:
+      - aws s3 cp centos49* s3://test.tmwrs/centos4 --region us-west-2
