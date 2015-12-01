@@ -1,0 +1,14 @@
+# Test https://ci02.trendmicro.com
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    #- pip install awscli
+    - docker pull centos:latest
+
+test:
+  override:
+    - docker run --privileged -it -v ${PWD}:/srv centos:latest /srv/build.sh
